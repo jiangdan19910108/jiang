@@ -12,6 +12,7 @@ import com.student.bean.Student;
 
 /**
  * StudentMapper数据库映射
+ *
  * @ClassName StudentMapper
  */
 
@@ -25,18 +26,19 @@ public class StudentMapper implements RowMapper<Student> {
 
 		student.setBirthday(getStringDate(rs.getString(3)));
 		student.setAge(rs.getInt(4));
-		student.setScore(rs.getDouble(5));
-		student.setTelephone(rs.getString(6));
-		student.setPoslnumber(rs.getString(7));
-		student.setAddress(rs.getString(8));
+		student.setScore(rs.getInt(5));
+		student.setClassid(rs.getInt(6));
+		student.setMynumber(rs.getString(7));
+		System.out.println(student);
 		return student;
 	}
 
 	/**
-	   * 获取日期
-	   * @return 返回日期字符串格式yyyy-MM-dd
-	   * @throws ParseException
-	   */
+	 * 获取日期
+	 *
+	 * @return 返回日期字符串格式yyyy-MM-dd
+	 * @throws ParseException
+	 */
 	private String getStringDate(String birthday) {
 
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");

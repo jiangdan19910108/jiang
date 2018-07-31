@@ -22,13 +22,13 @@ tr:nth-child(odd) {
 <script type="text/javascript" >
 	function addCheckForm() {
 		var form = document.getElementById('addForm');
-
 	    var input_name= document.getElementById('addname').value;
 	    var input_birthday= document.getElementById('addbirthday').value;
 	    var input_age= document.getElementById('addage').value;
 	    var input_score= document.getElementById('addscore').value;
 	    //電話番号の入力checkを追加する
-	    var input_telephone= document.getElementById('addtelephone').value;
+	    var input_classid= document.getElementById('addclassid').value;
+	    var input_mynumber= document.getElementById('addmynumber').value;
 	    if (input_name == "" || input_name == null) {
 	    	alert("请输入学員姓名！！！");
 	    	return false;
@@ -39,7 +39,7 @@ tr:nth-child(odd) {
 	    	return false;
 	    }
 
-	    if (input_telephone == "" || input_telephone == null) {
+	    if (input_classid == "" || input_classid == null) {
 	    	alert("電話番号を入力してください！！！");
 	    	return false;
 	    }
@@ -50,6 +50,10 @@ tr:nth-child(odd) {
 
 	    if (input_score == "" || input_score == null) {
 	    	alert("请输入学員成绩！！！");
+	    	return false;
+	    }
+	    if (input_mynumber == "" || input_mynumber == null) {
+	    	alert("请输入個人番号！！！");
 	    	return false;
 	    }
 
@@ -78,7 +82,8 @@ tr:nth-child(odd) {
 	    var input_birthday= document.getElementById('editbirthday');
 	    var input_age= document.getElementById('editage');
 	    var input_score= document.getElementById('editscore');
-
+	    var input_classid= document.getElementById('editclassid');
+	    var input_mynumbere= document.getElementById('editmynumber');
 	    if (input_id == "" || input_id == null) {
 	    	alert("请输入学員id！！！");
 	    	return false;
@@ -104,6 +109,16 @@ tr:nth-child(odd) {
 	    	return false;
 	    }
 
+	    if (input_classid== "" || input_mynumber== null) {
+	    	alert("クラスID！！！");
+	    	return false;
+
+	    }
+	    if (input_mynumber == "" || input_mynumber== null) {
+	    	alert("请输入個人番号！！！");
+	    	return false;
+	    }
+
 		form.submit();
 		return true;
 	}
@@ -112,10 +127,10 @@ tr:nth-child(odd) {
 <body>
 <img src="./images/color-logo.gif" />
 ${msg}
-<h1 align="center">学生除法管理</h1>
+<h1 align="center">学生管理</h1>
 
 <div id="all_comm" class="all"  >
-  <h2 align="center">student除法</h2>
+  <h2 align="center">student資料</h2>
   <table id="items" >
 	<tr>
 		<td>id</td>
@@ -123,7 +138,8 @@ ${msg}
 		<td>出生年月</td>
 		<td>年龄</td>
 		<td>電話番号</td>
-		<td>郵便番号</td>
+		<td>クラスID</td>
+		<td>個人番号</td>
 
 	</tr>
 
@@ -134,25 +150,28 @@ ${msg}
 			<td id="birthday${student.id}">${student.birthday}</td>
 			<td id="age${student.id }">${student.age}</td>
 			<td id="score${student.id}">${student.score}</td>
+			<td id="classid${student.id}">${student.classid}</td>
+			<td id="mynumber${student.id}">${student.mynumber}</td>
 		 </tr>
 	 </c:forEach>
   </table>
 </div>
 
 	<div id="add_comm" class="all" align="left">
-	  <h2>電話番号</h2>
+	  <h2>查找学员</h2>
 	  <form action="queryByName" method="post" >
 		<input type="text" placeholder="姓名" name="name" >
 		<input type="submit" value="查找学员" >
 	  </form>
 
-	  <h2 id="edit_title">電話番号</h2>
+	  <h2 id="edit_title">添加学员</h2>
 		<form  id="addForm" action="add" method="post" >
-		<input id="addname" type="text" placeholder="姓名" name="name" />
-		<input id="addbirthday" type="text" placeholder="出生年月" name="birthday" />
+		<h3>姓名</h3>
+	<input id="addbirthday" type="text" placeholder="出生年月" name="birthday" />
 		<input id="addage" type="text" placeholder="年龄" name="age" />
 		<input id="addscore" type="text" placeholder="分数" name="score" />
-		<input id="addtelephone" type="text" placeholder="電話番号" name="telephone" />
+		<input id="addclassid" type="text" placeholder="クラスID" name="classid" />
+		<input id="addmynumber" type="text" placeholder="個人番号" name="mynumber" />
 		<input type="button" value="添加" onClick="addCheckForm()"/>
 	  </form>
 	</div>
@@ -171,6 +190,8 @@ ${msg}
 		<input id="editbirthday" type="text" placeholder="出生年月" name="birthday" />
 		<input id="editage" type="text" placeholder="年龄" name="age" />
 		<input id="editscore" type="text" placeholder="分数" name="score" />
+		<input id="editclassid" type="text" placeholder="クラスID" name="classid" />
+		<input id="editmynumber" type="text" placeholder="個人番号" name="mynumber" />
 		<input type="button" value="确定修改" onclick="editCheckForm()"/>
 	  </form>
 	</div>

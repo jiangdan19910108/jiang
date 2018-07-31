@@ -1,5 +1,7 @@
 package com.student.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,10 @@ public class StudentController {
 		//从ioc容器中获取dao
 		StudentDao dao = (StudentDao) context.getBean("dao");
 		model.addAttribute("students", dao.queryAll());
+		ArrayList<Student> list = dao.queryAll();
+		for (Student student : list) {
+			System.out.println(student);
+		}
 
 		return "index";
 	}
@@ -49,25 +55,24 @@ public class StudentController {
 	 * @param birthday
 	 * @param age
 	 * @param score
-	 * @param telephone
+
 	 * @param model
-	 * @param poslnumber
-	 * @param address
+
+
 	 * @return 返回值类型： String
 	 */
 	@RequestMapping(value = "/add")
-	public String addStu(String name, String birthday, String age, String score, String telephone, String poslnumber, String address, Model model) {
+	public String addStu(String name, String birthday, Integer age, Integer score, Integer classid, String mynumber, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		StudentDao dao = (StudentDao) context.getBean("dao");
 		Student student = new Student();
 		student.setName(name);
-		student.setTelephone(telephone);
-		student.setPoslnumber(poslnumber);
 		student.setBirthday(birthday);
-		student.setAge(Integer.valueOf(age));
-		student.setScore(Double.parseDouble(score));
-		student.setAddress(address);
+		student.setAge(age);
+		student.setScore(score);
+		student.setClassid(classid);
+		student.setMynumber(mynumber);
 
 		model.addAttribute("students", dao.queryAll());
 		boolean result = dao.addStu(student);
@@ -117,20 +122,19 @@ public class StudentController {
 	 * @return 返回值类型： String
 	 */
 	@RequestMapping(value = "/update")
-	public String updateStu(String id, String name, String birthday, String age, String score, String telephone,String poslnumber, String address,Model model) {
+	public String updateStu(Integer id, String name, String birthday, Integer age, Integer score, Integer classid,String mynumber, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		StudentDao dao = (StudentDao) context.getBean("dao");
 		Student student = new Student();
-		student.setId(Integer.parseInt(id));
+		student.setId(id);
 		student.setName(name);
-		student.setTelephone(telephone);
-		student.setTelephone(poslnumber);
 		student.setBirthday(birthday);
-		student.setAge(Integer.valueOf(age));
-		student.setScore(Double.parseDouble(score));
-		student.setAddress(address);
-		
+		student.setAge(age);
+		student.setScore(score);
+		student.setClassid(classid);
+
+
 		boolean result = dao.updateStu(student);
 
 		if (result) {

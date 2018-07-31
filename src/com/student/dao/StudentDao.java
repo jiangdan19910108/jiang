@@ -1,6 +1,7 @@
 package com.student.dao;
 
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -35,10 +36,10 @@ public class StudentDao {
 	 * 查询所有学生
 	 * @return 返回值类型： List<Student>
 	 */
-	public List<Student> queryAll() {
-		String sql = "select id,name,birthday,age,score,telephone,poslnumber,address from student";
+	public ArrayList<Student> queryAll() {
+		String sql = "select id,name,birthday,age,score,classid,mynumber from student";
 		//将查询结果映射到Student类中，添加到list中，并返回
-		return jdbcTemplate.query(sql, new StudentMapper());
+		return (ArrayList<Student>) jdbcTemplate.query(sql, new StudentMapper());
 	}
 
 	/**
@@ -47,7 +48,7 @@ public class StudentDao {
 	 * @return 返回值类型： List<Student>
 	 */
 	public List<Student> queryByName(String name) {
-		String sql = "select id,name,birthday,age,score,telephone,poslnumber,address from student where name like '%" + name + "%'";
+		String sql = "select id,name,birthday,age,score,classid,mynumber from student where name like '%" + name + "%'";
 
 		return jdbcTemplate.query(sql, new StudentMapper());
 	}
@@ -58,12 +59,12 @@ public class StudentDao {
 	 * @return 返回值类型： boolean
 	 */
 	public boolean addStu(Student student) {
-		String sql = "insert into student(id,name,birthday,age,score,telephone,poslnumber,address) values(0,?,?,?,?)";
+		String sql = "insert into student(id,name,birthday,age,score,classid,mynumber) values(0,?,?,?,?,?,?)";
 
 		return jdbcTemplate.update(sql,
-				new Object[] { student.getName(), student.getBirthday(), student.getAge(),
-						student.getScore(),student.getTelephone(),student.getPoslnumber() },
-				new int[] { Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.DOUBLE, Types.VARCHAR }) == 1;
+				new Object[] { student.getName(), student.getBirthday(), student.getAge(),student.getScore(),student.getClassid(),student.getMynumber()},
+
+				new int[] { Types.VARCHAR, Types.VARCHAR, Types.INTEGER,  Types.INTEGER, Types.INTEGER,Types.VARCHAR }) == 1;
 	}
 
 	/**
@@ -84,9 +85,9 @@ public class StudentDao {
 	 */
 	public boolean updateStu(Student student) {
 
-		String sql = "update student set name=? ,age=?,birthday = ? ,score = ?,telephone = ?,poslnumber = ? ,address = ?  where id = ?";
+		String sql = "update student set name=? ,age=?,birthday = ? ,score = ?,classid = ?,mynumber = ?  where id = ?";
 		Object stuObj[] = new Object[] {student.getName(), student.getAge(), student.getBirthday(),
-				student.getScore(), student.getTelephone(), student.getPoslnumber(),student.getId() };
+				student.getScore(),student.getClassid(), student.getId(),student.getMynumber() };
 
 		return jdbcTemplate.update(sql, stuObj) == 1;
 	}

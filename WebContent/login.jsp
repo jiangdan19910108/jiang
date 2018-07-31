@@ -9,5 +9,6 @@
 <body>
 <center><img src="./color-logo.gif"/></center>
 <h1 align="center"><a href="all" rel="external nofollow" rel="external nofollow" >进入学員管理主页</a></h1>
+<h1 align="center"><a href="allteacher" rel="external nofollow" rel="external nofollow" >进入教師管理主页</a></h1>
 </body>
 </html>
