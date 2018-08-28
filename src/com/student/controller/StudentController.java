@@ -34,7 +34,7 @@ public class StudentController {
 	 * @param model
 	 * @return 返回值类型： String
 	 */
-	@RequestMapping(value = "/queryByName")
+	/*@RequestMapping(value = "/queryByName")
 	public String queryByName(String name, Model model) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		//从ioc容器中获取dao
@@ -42,7 +42,7 @@ public class StudentController {
 		model.addAttribute("students", dao.queryByName(name));
 		return "index";
 	}
-
+*/
 	/**
 	 * 添加新学生，并将结果返回给index页面，由index转发到主页
 	 * @param name
@@ -55,7 +55,7 @@ public class StudentController {
 	 * @param address
 	 * @return 返回值类型： String
 	 */
-	@RequestMapping(value = "/add")
+	/*@RequestMapping(value = "/add")
 	public String addStu(String name, String birthday, String age, String score, String telephone, String poslnumber, String address, Model model) {
 
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -82,12 +82,12 @@ public class StudentController {
 		return "index";
 	}
 
-	/**
+	*//**
 	 * 通过id删除学生
 	 * @param id
 	 * @param model
 	 * @return 返回值类型： String
-	 */
+	 *//*
 	@RequestMapping(value = "/deleteById")
 	public String deleteById(String id, Model model) {
 		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -104,7 +104,7 @@ public class StudentController {
 		return "index";
 	}
 
-	/**
+	*//**
 	 *
 	 * @param id
 	 * @param name
@@ -115,7 +115,7 @@ public class StudentController {
 	 * @param model
 	 * @param address
 	 * @return 返回值类型： String
-	 */
+	 *//*
 	@RequestMapping(value = "/update")
 	public String updateStu(String id, String name, String birthday, String age, String score, String telephone,String poslnumber, String address,Model model) {
 
@@ -130,7 +130,7 @@ public class StudentController {
 		student.setAge(Integer.valueOf(age));
 		student.setScore(Double.parseDouble(score));
 		student.setAddress(address);
-		
+
 		boolean result = dao.updateStu(student);
 
 		if (result) {
@@ -143,12 +143,12 @@ public class StudentController {
 		return "index";
 	}
 
-	/**
+	*//**
 	 * 要弹出的页面消息
 	 * @param msg
 	 * @return 返回值类型： String
-	 */
+	 *//*
 	public String msg(String msg) {
 		return "<script>alert('" + msg + "')</script>";
-	}
+	}*/
 }

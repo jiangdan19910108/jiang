@@ -22,13 +22,12 @@ public class StudentMapper implements RowMapper<Student> {
 
 		student.setId(rs.getInt(1));
 		student.setName(rs.getString(2));
-
 		student.setBirthday(getStringDate(rs.getString(3)));
-		student.setAge(rs.getInt(4));
-		student.setScore(rs.getDouble(5));
-		student.setTelephone(rs.getString(6));
-		student.setPoslnumber(rs.getString(7));
-		student.setAddress(rs.getString(8));
+		student.setScore(rs.getDouble(4));
+		student.setMyNumber(rs.getInt(5));
+		student.setAge(rs.getInt(6));
+		student.setClassid(rs.getInt(7));
+		student.setAaa(rs.getString(8));
 		return student;
 	}
 
